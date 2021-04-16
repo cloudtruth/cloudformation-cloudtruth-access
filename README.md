@@ -1,4 +1,4 @@
-# CloudTruth CloudFormation for AWS Integrations 
+# CloudFormation for AWS Integrations 
 This cloudformation template will create an AWS Role providing [CloudTruth AWS integration](https://docs.cloudtruth.com/integrations/aws) access with inline policies for S3, SSM, and Secrets Manager. 
 
 ## Prerequisite
