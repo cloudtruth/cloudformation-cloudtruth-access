@@ -4,7 +4,6 @@
     "Parameters" : {
         "CloudTruthRoleName" : {
         "Type" : "String",
-        "Default" : "Cloudtruth-Integration-Role",
         "Description" : "The Role name matching the CloudTruth AWS Integration role name."
         },
         "CloudTruthExternalId" : {
