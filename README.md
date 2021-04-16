@@ -9,7 +9,7 @@ This cloudformation template will create an AWS Role providing [CloudTruth AWS i
 :information_source: ``EXTERNAL_ID_FROM_CLOUDTRUTH`` is provided by the AWS CloudTruth integration setup.   
 :information_source: ``AWS_INTEGRATION_ROLE_NAME`` **must** match the integration setup AWS role name. 
 
-Update the values for the ``EXTERNAL_ID_FROM_CLOUDTRUTH`` and ``AWS_INTEGRATION_ROLE_NAME``.
+Update the values for parameters ``EXTERNAL_ID_FROM_CLOUDTRUTH`` and ``AWS_INTEGRATION_ROLE_NAME``.  
 Execute the following [aws cloudformation create-stack](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/cloudformation/create-stack.html):
 
 
