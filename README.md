@@ -12,12 +12,12 @@ This cloudformation template will create an AWS Role providing [CloudTruth AWS i
 Executing the following [aws cloudformation create-stack](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/cloudformation/create-stack.html) command will create the AWS role and configure three inline policies:
 
 
-
+```
 aws cloudformation create-stack --stack-name CloudTruthIntegration \
 --template-url https://cloudtruth-production-packages.s3.amazonaws.com/cloudformation/cloudtruth-access/cloudTruth_AWS_access.json \
 --capabilities CAPABILITY_NAMED_IAM \
 --parameters ParameterKey=CloudTruthExternalId,ParameterValue=EXTERNAL_ID_FROM_CLOUDTRUTH ParameterKey=CloudTruthRoleName,ParameterValue=AWS_INTEGRATION_ROLE_NAME
-
+```
 
 ## Usage
 
