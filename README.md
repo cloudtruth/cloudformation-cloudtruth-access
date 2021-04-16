@@ -19,9 +19,8 @@ aws cloudformation create-stack --stack-name CloudTruthIntegration \
 ```
 
 ## Usage
-:information_source: 
-``EXTERNAL_ID_FROM_CLOUDTRUTH`` is provided by the AWS CloudTruth integration setup.   
-``AWS_INTEGRATION_ROLE_NAME`` **must** match the integration setup AWS role name. 
+:information_source: ``EXTERNAL_ID_FROM_CLOUDTRUTH`` is provided by the AWS CloudTruth integration setup.   
+:information_source: ``AWS_INTEGRATION_ROLE_NAME`` **must** match the integration setup AWS role name. 
 
 | Parameter | Description | Type | Default | Required |
 |-----------|-------------|------|---------|:--------:|
