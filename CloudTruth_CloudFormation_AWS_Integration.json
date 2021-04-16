@@ -1,0 +1,126 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+
+    "Parameters" : {
+        "CloudTruthRoleName" : {
+        "Type" : "String",
+        "Default" : "Cloudtruth-Integration-Role",
+        "Description" : "The Role name matching the CloudTruth AWS Integration role name."
+        },
+        "CloudTruthExternalId" : {
+            "Type" : "String",
+            "Description" : "The Unique External ID provided by the CloudTruth AWS Integration."
+        }
+    },
+    
+    "Resources": {
+        "CLOUDTRUTHROLE": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+                "RoleName": {"Ref" : "CloudTruthRoleName" },
+                "AssumeRolePolicyDocument": {
+                "Version": "2012-10-17",
+                "Statement": [
+                    {
+                    "Effect": "Allow",
+                    "Principal": {
+                        "AWS": "arn:aws:iam::811566399652:root"
+                    },
+                    "Action": "sts:AssumeRole",
+                    "Condition": {
+                        "StringEquals": {
+                        "sts:ExternalId": {"Ref" : "CloudTruthExternalId"}
+                        }
+                    }
+                    } ]
+                }
+            }
+        },
+
+        "SSMPolicy": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+                "PolicyName": "SSM",
+                "PolicyDocument": {
+                    "Version" : "2012-10-17",
+                    "Statement": [ {
+                    "Sid": "ParameterAccess",
+                    "Action": [
+                        "ssm:DescribeParameters",
+                        "ssm:GetParameter",
+                        "ssm:GetParameters",
+                        "ssm:GetParametersByPath"
+                    ],
+                    "Effect": "Allow",
+                    "Resource": "*"
+                    } ]                  
+                },       
+                "Roles": [ {
+                    "Ref": "CLOUDTRUTHROLE"
+                } ]
+            }
+            },
+
+            "S3InlinePolicy": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+                "PolicyName": "S3",
+                "PolicyDocument": {
+                    "Version" : "2012-10-17",
+                    "Statement": [ {
+                    "Sid": "BucketSelection",
+                    "Action": [
+                        "s3:ListAllMyBuckets"
+                    ],
+                    "Effect": "Allow",
+                    "Resource": "*"
+                },
+                {
+                    "Sid": "BucketAccess",
+                    "Action": [
+                        "s3:GetBucketLocation",
+                        "s3:ListBucket",
+                        "s3:GetObject"
+                    ],
+                    "Effect": "Allow",
+                    "Resource": "*"
+                    } ]                  
+                },       
+                "Roles": [ {
+                    "Ref": "CLOUDTRUTHROLE"
+                } ]
+            }
+            },
+
+            "SecretsManagerPolicy": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+                "PolicyName": "SecretsManager",
+                "PolicyDocument": {
+                    "Version" : "2012-10-17",
+                    "Statement": [ {
+                    "Sid": "ListSecrets",
+                    "Effect": "Allow",
+                    "Action": "secretsmanager:ListSecrets",
+                    "Resource": "*"
+                },
+                {
+                    "Sid": "SecretAccess",
+                    "Effect": "Allow",
+                    "Action": [
+                        "secretsmanager:GetSecretValue",
+                        "secretsmanager:DescribeSecret"
+                    ],
+                    "Resource": "*"
+                    } ]                  
+                },                     
+                "Roles": [ {
+                    "Ref": "CLOUDTRUTHROLE"
+                } ]
+            }
+        }
+    }  
+}
+    
+    
+    
