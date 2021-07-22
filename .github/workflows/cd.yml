@@ -34,8 +34,6 @@ jobs:
 
       - name: Deploy cloudformation template to S3
         run: |
-          source <(cloudtruth -e production template get deploy.aws_credentials_env)
-          source <(cloudtruth -e production template get deploy.package_env)
           BUCKET_PATH=cloudformation/cloudtruth-access
           CF_TMPL=cloudTruth_AWS_access.json
           atmos -e production auth_exec aws s3 cp --acl public-read ${CF_TMPL} s3://${PACKAGES_BUCKET_NAME}/cloudformation/cloudtruth-access/
