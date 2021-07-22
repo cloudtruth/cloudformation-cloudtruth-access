@@ -17,9 +17,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: cloudtruth/cli-action@v1
+      - name: Set environment from cloudtruth
+        uses: cloudtruth/configure-action@v1
         with:
-          version: 0.2.0
+          token: "${{ secrets.CLOUDTRUTH_API_KEY }}"
+          project: "deploy"
+          environment: "production"
 
       - name: Install Atmos
         run: sudo gem install --no-document simplygenius-atmos
@@ -27,7 +30,7 @@ jobs:
       - name: Setup Atmos
         run: |
           mkdir -p config
-          cloudtruth -e production template get deploy.atmos_yml > config/atmos.yml
+          echo -e "${ATMOS_YML}" > config/atmos.yml
 
       - name: Deploy cloudformation template to S3
         run: |
