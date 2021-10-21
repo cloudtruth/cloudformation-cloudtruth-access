@@ -18,7 +18,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Set environment from cloudtruth
-        uses: cloudtruth/configure-action@v1
+        uses: cloudtruth/configure-action@v2
         with:
           token: "${{ secrets.CLOUDTRUTH_API_KEY }}"
           project: "deploy"
