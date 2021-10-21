@@ -49,6 +49,7 @@
                         "ssm:DeleteParameter",
                         "ssm:DescribeParameters",
                         "ssm:GetParameter",
+                        "ssm:GetParameters",
                         "ssm:ListTagsForResource",
                         "ssm:PutParameter",
                         "ssm:RemoveTagsFromResource",
@@ -115,7 +116,9 @@
                         "secretsmanager:DeleteSecret",
                         "secretsmanager:DescribeSecret",
                         "secretsmanager:GetSecretValue",
-                        "secretsmanager:ListSecrets"
+                        "secretsmanager:ListSecrets",
+                        "secretsmanager:TagResource",
+                        "secretsmanager:UpdateSecret"
                     ],
                     "Resource": "*"
                     } ]                  
