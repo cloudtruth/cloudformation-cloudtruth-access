@@ -45,10 +45,14 @@
                     "Statement": [ {
                     "Sid": "ParameterAccess",
                     "Action": [
+                        "ssm:AddTagsToResource",
+                        "ssm:DeleteParameter",
                         "ssm:DescribeParameters",
                         "ssm:GetParameter",
-                        "ssm:GetParameters",
-                        "ssm:GetParametersByPath"
+                        "ssm:ListTagsForResource",
+                        "ssm:PutParameter",
+                        "ssm:RemoveTagsFromResource",
+                        "tag:GetResources"
                     ],
                     "Effect": "Allow",
                     "Resource": "*"
@@ -107,8 +111,11 @@
                     "Sid": "SecretAccess",
                     "Effect": "Allow",
                     "Action": [
+                        "secretsmanager:CreateSecret",
+                        "secretsmanager:DeleteSecret",
+                        "secretsmanager:DescribeSecret",
                         "secretsmanager:GetSecretValue",
-                        "secretsmanager:DescribeSecret"
+                        "secretsmanager:ListSecrets"
                     ],
                     "Resource": "*"
                     } ]                  
